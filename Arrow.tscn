@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Spear.png" type="Texture" id=1]
+[ext_resource path="res://Arrow.gd" type="Script" id=2]
+
+[sub_resource type="PhysicsMaterial" id=1]
+bounce = 0.1
+
+[node name="Arrow" type="RigidBody2D"]
+mass = 3.18
+physics_material_override = SubResource( 1 )
+contacts_reported = 2
+contact_monitor = true
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 2, 2 )
+z_index = 10
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 14, -1, 5, 32 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+polygon = PoolVector2Array( -9.00001, -2.49997, -9, -0.499967, 16, -0.500058, 16, 0.499942, -9, 0.500033, -8.99999, 2.50003, -16, 5.79198e-05 )

@@ -1,0 +1,95 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://GilgameshStraight.png" type="Texture" id=1]
+[ext_resource path="res://Gilgamesh.gd" type="Script" id=2]
+[ext_resource path="res://GilgameshSide.png" type="Texture" id=3]
+[ext_resource path="res://GilgameshJump.png" type="Texture" id=4]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 3 )
+region = Rect2( 48, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 3 )
+region = Rect2( 96, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 3 )
+region = Rect2( 144, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 1 )
+region = Rect2( 48, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 1 )
+region = Rect2( 96, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 1 )
+region = Rect2( 144, 0, 48, 48 )
+
+[sub_resource type="SpriteFrames" id=9]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
+"loop": true,
+"name": "Side",
+"speed": 10.0
+}, {
+"frames": [ SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ) ],
+"loop": true,
+"name": "Straight",
+"speed": 3.0
+}, {
+"frames": [ ExtResource( 4 ) ],
+"loop": true,
+"name": "Jump",
+"speed": 5.0
+} ]
+
+[sub_resource type="StyleBoxFlat" id=10]
+bg_color = Color( 0.329412, 1, 0.780392, 1 )
+
+[sub_resource type="StyleBoxFlat" id=11]
+bg_color = Color( 1, 0.235294, 0.235294, 1 )
+
+[node name="Gilgamesh" type="KinematicBody2D" groups=[
+"Gilgamesh",
+]]
+script = ExtResource( 2 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 0.280609, 0 )
+scale = Vector2( 3, 3 )
+frames = SubResource( 9 )
+animation = "Straight"
+playing = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 0, -150 )
+current = true
+smoothing_enabled = true
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+margin_left = -9.0
+margin_top = -58.0
+margin_right = 107.0
+margin_bottom = -44.0
+rect_scale = Vector2( 0.2, 0.2 )
+custom_styles/fg = SubResource( 10 )
+custom_styles/bg = SubResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+visible = false
+polygon = PoolVector2Array( -8, -56, 16, -56, 16, 0, 56, 0, 56, 54, -40, 54, -40, 0, -8, 0 )
